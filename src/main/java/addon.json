@@ -1,0 +1,9 @@
+{
+  "uuid": "%uuid%",
+  "name": "StaySafe",
+  "mainClass": "de.marvhuelsmann.labynews.StaySafe",
+  "description": "Always receive the latest Covid-19 information",
+  "version": 1.1,
+  "author": "Marvienio",
+  "category": 2
+}
