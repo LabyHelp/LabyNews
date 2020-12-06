@@ -2,10 +2,10 @@ package de.marvhuelsmann.labynews.listener;
 
 import de.marvhuelsmann.labynews.StaySafe;
 import de.marvhuelsmann.labynews.enums.CoronaTypes;
-import net.labymod.main.LabyMod;
 import net.labymod.utils.ServerData;
 import net.minecraft.util.EnumChatFormatting;
 
+import java.text.NumberFormat;
 import java.util.function.Consumer;
 
 public class ClientJoinListener implements Consumer<ServerData>, net.labymod.utils.Consumer<ServerData> {
@@ -22,16 +22,21 @@ public class ClientJoinListener implements Consumer<ServerData>, net.labymod.uti
 
                         if (StaySafe.getInstace().getSettingsManager().getJoinMessage()) {
 
+                            NumberFormat NUMBERFORMAT = NumberFormat.getInstance();
+                            NUMBERFORMAT.setGroupingUsed(true);
+
                             String newDeaths = StaySafe.getInstace().getNewsManager().getNews().get(CoronaTypes.NEWDEATHS.getJsonKey());
-                            String newConfirmed = StaySafe.getInstace().getNewsManager().getNews().get(CoronaTypes.NEWCONFIRMED.getJsonKey());
+                            String totalInfected = StaySafe.getInstace().getNewsManager().getNews().get(CoronaTypes.TOTALCONFIRMED.getJsonKey());
                             String newRecovered = StaySafe.getInstace().getNewsManager().getNews().get(CoronaTypes.NEWRECOVERED.getJsonKey());
 
-                            LabyMod.getInstance().displayMessageInChat("New confirmed today: " + EnumChatFormatting.WHITE + newConfirmed);
-                            LabyMod.getInstance().displayMessageInChat("Deaths today: " + EnumChatFormatting.WHITE + newDeaths);
-                            LabyMod.getInstance().displayMessageInChat("New recovered today: " + EnumChatFormatting.WHITE + newRecovered);
+                            if (!newDeaths.equals("0")) {
 
-                            StaySafe.getInstace().sendClientMessage(EnumChatFormatting.WHITE + "Our Discord: https://labyhelp.de/discord");
+                                StaySafe.getInstace().sendClientMessage("Total confirmed: " + EnumChatFormatting.WHITE + totalInfected);
+                                StaySafe.getInstace().sendClientMessage("Deaths today: " + EnumChatFormatting.WHITE + newDeaths);
+                                StaySafe.getInstace().sendClientMessage("New recovered today: " + EnumChatFormatting.WHITE + newRecovered);
 
+                                StaySafe.getInstace().sendClientMessage(EnumChatFormatting.WHITE + "Our Discord: " + EnumChatFormatting.BOLD + " https://labyhelp.de/discord");
+                            }
                         }
                     } else {
                         StaySafe.getInstace().sendClientMessage("The StaySafe servers are not responding!");

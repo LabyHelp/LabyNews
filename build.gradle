@@ -80,3 +80,14 @@ processResources
         exclude 'mcmod.info'
     }
 }
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+compileJava.options.encoding = 'UTF-8'
+
+reobf {
+    jar {
+        useNotchSrg()
+    }
+}

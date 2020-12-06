@@ -15,7 +15,7 @@ public class Updater {
     static {
         URL url = null;
         try {
-            url = new URL("https://drive.google.com/u/0/uc?id=1_04KoR3sb9CEPQoxffezVsM_8V2G7q1s&export=download");
+            url = new URL("https://drive.google.com/u/0/uc?id=1ZWWFfu2zTqy555yV6Alt2t5-Zls85eh8&export=download");
         } catch (MalformedURLException e) {
             e.printStackTrace();
         }

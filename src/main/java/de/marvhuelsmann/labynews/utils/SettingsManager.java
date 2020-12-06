@@ -7,6 +7,7 @@ public class SettingsManager {
     public boolean addonEnabled = true;
     public final String messagePrefix = EnumChatFormatting.DARK_GRAY + "[" + EnumChatFormatting.BLUE + "CoronaNews" + EnumChatFormatting.DARK_GRAY + "] " + EnumChatFormatting.GRAY;
     public boolean serverResponding = false;
+
     public boolean getAddonEnabled() {
         return addonEnabled;
     }

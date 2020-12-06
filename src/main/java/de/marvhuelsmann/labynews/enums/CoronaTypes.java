@@ -2,7 +2,8 @@ package de.marvhuelsmann.labynews.enums;
 
 public enum CoronaTypes {
 
-    NEWCONFIRMED("{\"Message\":\"\",\"Global\":{\"NewConfirmedNewConfirmed\""),
+    NEWCONFIRMED("{\"Message\":\"\",\"Global\":{\"NewConfirmed\""),
+    TOTALCONFIRMED("\"TotalConfirmed\""),
     NEWDEATHS("\"NewDeaths\""),
     NEWRECOVERED("\"NewRecovered\"");
 

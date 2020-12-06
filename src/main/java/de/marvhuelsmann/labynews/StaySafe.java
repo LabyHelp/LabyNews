@@ -1,12 +1,15 @@
 package de.marvhuelsmann.labynews;
 
 import de.marvhuelsmann.labynews.listener.ClientJoinListener;
-import de.marvhuelsmann.labynews.listener.ClientTickListener;
+import de.marvhuelsmann.labynews.module.DeathTodayModule;
+import de.marvhuelsmann.labynews.module.NewRecoveredModule;
+import de.marvhuelsmann.labynews.module.TotalConfirmedModule;
 import de.marvhuelsmann.labynews.utils.NewsManager;
 import de.marvhuelsmann.labynews.utils.SettingsManager;
 import de.marvhuelsmann.labynews.utils.Updater;
 import net.labymod.api.LabyModAddon;
 import net.labymod.main.LabyMod;
+import net.labymod.main.Source;
 import net.labymod.settings.elements.BooleanElement;
 import net.labymod.settings.elements.ControlElement;
 import net.labymod.settings.elements.SettingsElement;
@@ -37,6 +40,12 @@ public class StaySafe extends LabyModAddon {
         System.out.println("Loading StaySafe");
         instace = this;
 
+        if (Source.ABOUT_MC_VERSION.startsWith("1.8")) {
+            this.getApi().registerModule(new NewRecoveredModule());
+            this.getApi().registerModule(new TotalConfirmedModule());
+            this.getApi().registerModule(new DeathTodayModule());
+        }
+
         try {
             String webVersion = readVersion();
             StaySafe.getInstace().getSettingsManager().currentVersion = webVersion;
@@ -48,18 +57,21 @@ public class StaySafe extends LabyModAddon {
             StaySafe.getInstace().getSettingsManager().serverResponding = false;
         }
 
+
         System.out.println("Loading Listeners");
         this.getApi().getEventManager().registerOnJoin(new ClientJoinListener());
-        this.getApi().registerForgeListener(new ClientTickListener());
 
 
-        Runtime.getRuntime().addShutdownHook(new Thread(() -> {
-            if (StaySafe.getInstace().getSettingsManager().isNewerVersion()) {
-                StaySafe.getInstace().getUpdater().update();
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            @Override
+            public void run() {
+                if (StaySafe.getInstace().getSettingsManager().isNewerVersion()) {
+                    StaySafe.getInstace().getUpdater().update();
+                }
             }
         }));
-    }
 
+    }
 
     @Override
     public void loadConfig() {
@@ -69,6 +81,7 @@ public class StaySafe extends LabyModAddon {
 
     @Override
     protected void fillSettings(List<SettingsElement> settings) {
+
 
         final BooleanElement enabled = new BooleanElement("Enabled", new ControlElement.IconData(Material.LEVER), new Consumer<Boolean>() {
             @Override
@@ -91,8 +104,9 @@ public class StaySafe extends LabyModAddon {
                 StaySafe.this.getConfig().addProperty("joinMessage", enable);
                 StaySafe.this.saveConfig();
             }
-        }, StaySafe.getInstace().getSettingsManager().getAddonEnabled());
+        }, StaySafe.getInstace().getSettingsManager().getJoinMessage());
         settings.add(joinInformationMessage);
+
 
     }
 

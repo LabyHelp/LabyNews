@@ -13,14 +13,6 @@ public class NewsManager {
 
     private final HashMap<String, String> news = new HashMap<String, String>();
 
-    public Integer checkTick(Integer tick) {
-        if (tick.equals(1500)) {
-            readCorona();
-            return 0;
-        }
-        return tick;
-    }
-
     public void readCorona() {
         try {
             final HttpURLConnection con = (HttpURLConnection) new URL("https://marvhuelsmann.de/corona.php").openConnection();
