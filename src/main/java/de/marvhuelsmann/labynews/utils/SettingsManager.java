@@ -16,7 +16,7 @@ public class SettingsManager {
         return serverResponding;
     }
 
-    public String currentVersion = "1.5";
+    public String currentVersion = "1.2";
     public Boolean isNewerVersion = false;
     public boolean isNewerVersion() {
         return isNewerVersion;

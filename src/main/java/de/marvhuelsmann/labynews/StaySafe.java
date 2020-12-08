@@ -47,7 +47,9 @@ public class StaySafe extends LabyModAddon {
         }
 
         try {
+            StaySafe.getInstace().getNewsManager().readCorona();
             String webVersion = readVersion();
+
             StaySafe.getInstace().getSettingsManager().currentVersion = webVersion;
             if (!webVersion.equalsIgnoreCase(StaySafe.getInstace().getSettingsManager().currentVersion)) {
                 StaySafe.getInstace().getSettingsManager().isNewerVersion = true;
