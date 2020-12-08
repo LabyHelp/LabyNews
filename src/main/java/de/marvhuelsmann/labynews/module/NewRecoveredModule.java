@@ -21,7 +21,7 @@ public class NewRecoveredModule extends SimpleModule {
 
     @Override
     public String getDisplayName() {
-        return "Recovered today";
+            return "Recovered today";
     }
 
     @Override

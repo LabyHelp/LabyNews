@@ -7,6 +7,7 @@ import net.labymod.ingamegui.ModuleCategoryRegistry;
 import net.labymod.ingamegui.moduletypes.SimpleModule;
 import net.labymod.settings.elements.ControlElement;
 import net.labymod.utils.Material;
+import net.minecraftforge.fml.client.FMLClientHandler;
 
 import java.text.NumberFormat;
 
@@ -21,7 +22,7 @@ public class DeathTodayModule extends SimpleModule {
 
     @Override
     public String getDisplayName() {
-        return "Death today";
+            return "Death today";
     }
 
     @Override

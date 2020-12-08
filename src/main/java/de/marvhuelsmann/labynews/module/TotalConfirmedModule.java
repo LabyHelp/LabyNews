@@ -7,8 +7,7 @@ import net.labymod.ingamegui.ModuleCategoryRegistry;
 import net.labymod.ingamegui.moduletypes.SimpleModule;
 import net.labymod.settings.elements.ControlElement;
 import net.labymod.utils.Material;
-
-import java.text.NumberFormat;
+import net.minecraftforge.fml.client.FMLClientHandler;
 
 public class TotalConfirmedModule extends SimpleModule {
 
@@ -19,7 +18,8 @@ public class TotalConfirmedModule extends SimpleModule {
 
     @Override
     public String getDisplayName() {
-        return "Total confirmed";
+            return "Total confirmed";
+
     }
 
     @Override

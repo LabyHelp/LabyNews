@@ -77,6 +77,14 @@ public class StaySafe extends LabyModAddon {
     public void loadConfig() {
         StaySafe.getInstace().getSettingsManager().addonEnabled = !this.getConfig().has("enable") || this.getConfig().get("enable").getAsBoolean();
         StaySafe.getInstace().getSettingsManager().joinMessage = !this.getConfig().has("joinMessage") || this.getConfig().get("joinMessage").getAsBoolean();
+        StaySafe.getInstace().getSettingsManager().newCommer = !this.getConfig().has("newCommer") || this.getConfig().get("newCommer").getAsBoolean();
+    }
+
+    public void updateNewCommerConfig() {
+        StaySafe.getInstace().getSettingsManager().newCommer = false;
+
+        StaySafe.this.getConfig().addProperty("newCommer", false);
+        StaySafe.this.saveConfig();
     }
 
     @Override

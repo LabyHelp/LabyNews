@@ -2,8 +2,14 @@ package de.marvhuelsmann.labynews.listener;
 
 import de.marvhuelsmann.labynews.StaySafe;
 import de.marvhuelsmann.labynews.enums.CoronaTypes;
+import net.labymod.core.LabyModCore;
+import net.labymod.core.asm.LabyModCoreMod;
+import net.labymod.main.LabyMod;
 import net.labymod.utils.ServerData;
+import net.minecraft.client.resources.Language;
+import net.minecraft.client.resources.LanguageManager;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.fml.client.FMLClientHandler;
 
 import java.text.NumberFormat;
 import java.util.function.Consumer;
@@ -31,11 +37,18 @@ public class ClientJoinListener implements Consumer<ServerData>, net.labymod.uti
 
                             if (!newDeaths.equals("0")) {
 
-                                StaySafe.getInstace().sendClientMessage("Total confirmed: " + EnumChatFormatting.WHITE + totalInfected);
-                                StaySafe.getInstace().sendClientMessage("Deaths today: " + EnumChatFormatting.WHITE + newDeaths);
-                                StaySafe.getInstace().sendClientMessage("New recovered today: " + EnumChatFormatting.WHITE + newRecovered);
+                                    StaySafe.getInstace().sendClientMessage("Total confirmed: " + EnumChatFormatting.WHITE + totalInfected);
+                                    StaySafe.getInstace().sendClientMessage("Deaths today: " + EnumChatFormatting.WHITE + newDeaths);
+                                    StaySafe.getInstace().sendClientMessage("New recovered today: " + EnumChatFormatting.WHITE + newRecovered);
 
-                                StaySafe.getInstace().sendClientMessage(EnumChatFormatting.WHITE + "Our Discord: " + EnumChatFormatting.BOLD + " https://labyhelp.de/discord");
+                                    StaySafe.getInstace().sendClientMessage(EnumChatFormatting.WHITE + "Our Discord: " + EnumChatFormatting.BOLD + " https://labyhelp.de/discord");
+
+                                    if (StaySafe.getInstace().getSettingsManager().isNewCommer()) {
+
+
+                                        StaySafe.getInstace().sendClientMessage(EnumChatFormatting.BLUE + "Info: You can deactivate this notification in the StaySafe Addon Settings");
+                                        StaySafe.getInstace().updateNewCommerConfig();
+                                    }
                             }
                         }
                     } else {

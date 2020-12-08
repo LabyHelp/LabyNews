@@ -16,7 +16,7 @@ public class SettingsManager {
         return serverResponding;
     }
 
-    public String currentVersion = "1.0";
+    public String currentVersion = "1.5";
     public Boolean isNewerVersion = false;
     public boolean isNewerVersion() {
         return isNewerVersion;
@@ -26,6 +26,11 @@ public class SettingsManager {
     public boolean joinMessage = true;
     public boolean getJoinMessage() {
         return joinMessage;
+    }
+
+    public boolean newCommer = true;
+    public boolean isNewCommer() {
+        return newCommer;
     }
 
 
