@@ -6,6 +6,7 @@ import net.labymod.core.LabyModCore;
 import net.labymod.core.asm.LabyModCoreMod;
 import net.labymod.main.LabyMod;
 import net.labymod.utils.ServerData;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.Language;
 import net.minecraft.client.resources.LanguageManager;
 import net.minecraft.util.EnumChatFormatting;
@@ -36,7 +37,6 @@ public class ClientJoinListener implements Consumer<ServerData>, net.labymod.uti
                             String newRecovered = StaySafe.getInstace().getNewsManager().getNews().get(CoronaTypes.NEWRECOVERED.getJsonKey());
 
                             if (!newDeaths.equals("0")) {
-
                                     StaySafe.getInstace().sendClientMessage("Total confirmed: " + EnumChatFormatting.WHITE + totalInfected);
                                     StaySafe.getInstace().sendClientMessage("Deaths today: " + EnumChatFormatting.WHITE + newDeaths);
                                     StaySafe.getInstace().sendClientMessage("New recovered today: " + EnumChatFormatting.WHITE + newRecovered);
@@ -52,7 +52,19 @@ public class ClientJoinListener implements Consumer<ServerData>, net.labymod.uti
                             }
                         }
                     } else {
-                        StaySafe.getInstace().sendClientMessage("The StaySafe servers are not responding!");
+                        try {
+                            StaySafe.getInstace().getNewsManager().readCorona();
+                            String webVersion = StaySafe.getInstace().readVersion();
+
+                            StaySafe.getInstace().getSettingsManager().currentVersion = webVersion;
+                            if (!webVersion.equalsIgnoreCase(StaySafe.getInstace().getSettingsManager().currentVersion)) {
+                                StaySafe.getInstace().getSettingsManager().isNewerVersion = true;
+                            }
+                            StaySafe.getInstace().getSettingsManager().serverResponding = true;
+                        } catch (Exception ignored) {
+                            StaySafe.getInstace().getSettingsManager().serverResponding = false;
+                            StaySafe.getInstace().sendClientMessage("The StaySafe servers are not responding!");
+                        }
                     }
                 }
             }
