@@ -1,5 +1,6 @@
 package de.labyhelp.addon.staysafe.module;
 
+import de.labyhelp.addon.LabyHelp;
 import de.labyhelp.addon.staysafe.StaySafe;
 import de.labyhelp.addon.staysafe.enums.CoronaTypes;
 import net.labymod.ingamegui.ModuleCategory;
@@ -21,7 +22,7 @@ public class DeathTodayModule extends SimpleModule {
 
     @Override
     public String getDisplayName() {
-            return "Death today";
+            return LabyHelp.getInstance().getTranslationManager().getTranslation("labynews.death");
     }
 
     @Override

@@ -1,5 +1,6 @@
 package de.labyhelp.addon.staysafe.listener;
 
+import de.labyhelp.addon.LabyHelp;
 import de.labyhelp.addon.staysafe.StaySafe;
 import de.labyhelp.addon.staysafe.enums.CoronaTypes;
 import net.labymod.core.LabyModCore;
@@ -32,17 +33,17 @@ public class ClientJoinListener implements Consumer<ServerData>, net.labymod.uti
                             String totalInfected = StaySafe.getInstace().getNewsManager().getNews().get(CoronaTypes.TOTALCONFIRMED.getJsonKey());
                             String newRecovered = StaySafe.getInstace().getNewsManager().getNews().get(CoronaTypes.NEWRECOVERED.getJsonKey());
 
-                            if (!newDeaths.equals("0")) {
-                                    StaySafe.getInstace().sendClientMessage("Total confirmed: " + EnumChatFormatting.WHITE + totalInfected);
-                                    StaySafe.getInstace().sendClientMessage("Deaths today: " + EnumChatFormatting.WHITE + newDeaths);
-                                    StaySafe.getInstace().sendClientMessage("New recovered today: " + EnumChatFormatting.WHITE + newRecovered);
+                            if (!newDeaths.equals("0") && !LabyHelp.getInstance().getSettingsManager().isInitLoading) {
+                                    StaySafe.getInstace().sendClientMessage(LabyHelp.getInstance().getTranslationManager().getTranslation("labynews.total") + " " + EnumChatFormatting.WHITE + totalInfected);
+                                    StaySafe.getInstace().sendClientMessage(LabyHelp.getInstance().getTranslationManager().getTranslation("labynews.death") + " " + EnumChatFormatting.WHITE + newDeaths);
+                                    StaySafe.getInstace().sendClientMessage(LabyHelp.getInstance().getTranslationManager().getTranslation("labynews.recover") + " " + EnumChatFormatting.WHITE + newRecovered);
 
-                                    StaySafe.getInstace().sendClientMessage(EnumChatFormatting.WHITE + "Our Discord: " + EnumChatFormatting.BOLD + " https://labyhelp.de/discord");
+                                    StaySafe.getInstace().sendClientMessage(EnumChatFormatting.WHITE + "Discord:" + EnumChatFormatting.BOLD + " https://labyhelp.de/discord");
 
                                     if (StaySafe.getInstace().getSettingsManager().isNewCommer()) {
 
 
-                                        StaySafe.getInstace().sendClientMessage(EnumChatFormatting.BLUE + "Info: You can deactivate this notification in the StaySafe Addon Settings");
+                                        LabyHelp.getInstance().sendTranslMessage("labynews.adversting");
                                         StaySafe.getInstace().updateNewCommerConfig();
                                     }
                             }

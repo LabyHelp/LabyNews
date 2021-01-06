@@ -6,7 +6,6 @@ import de.labyhelp.addon.staysafe.module.NewRecoveredModule;
 import de.labyhelp.addon.staysafe.module.TotalConfirmedModule;
 import de.labyhelp.addon.staysafe.utils.NewsManager;
 import de.labyhelp.addon.staysafe.utils.SettingsManager;
-import de.labyhelp.addon.staysafe.utils.Updater;
 import net.labymod.api.LabyModAddon;
 import net.labymod.main.LabyMod;
 import net.labymod.main.Source;
@@ -29,7 +28,6 @@ public class StaySafe extends LabyModAddon {
 
     private static StaySafe instace;
 
-    private final Updater updater = new Updater();
     private final NewsManager newsManager = new NewsManager();
     private final SettingsManager settingsManager = new SettingsManager();
 
@@ -45,6 +43,7 @@ public class StaySafe extends LabyModAddon {
             this.getApi().registerModule(new TotalConfirmedModule());
             this.getApi().registerModule(new DeathTodayModule());
         }
+
 
         try {
             StaySafe.getInstace().getNewsManager().readCorona();
@@ -64,14 +63,6 @@ public class StaySafe extends LabyModAddon {
         this.getApi().getEventManager().registerOnJoin(new ClientJoinListener());
 
 
-        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
-            @Override
-            public void run() {
-                if (StaySafe.getInstace().getSettingsManager().isNewerVersion()) {
-                    StaySafe.getInstace().getUpdater().update();
-                }
-            }
-        }));
 
     }
 
@@ -136,9 +127,6 @@ public class StaySafe extends LabyModAddon {
         return threadPool;
     }
 
-    public Updater getUpdater() {
-        return updater;
-    }
 
     public NewsManager getNewsManager() {
         return newsManager;
