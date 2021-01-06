@@ -1,16 +1,12 @@
-package de.marvhuelsmann.labynews.listener;
+package de.labyhelp.addon.staysafe.listener;
 
-import de.marvhuelsmann.labynews.StaySafe;
-import de.marvhuelsmann.labynews.enums.CoronaTypes;
+import de.labyhelp.addon.staysafe.StaySafe;
+import de.labyhelp.addon.staysafe.enums.CoronaTypes;
 import net.labymod.core.LabyModCore;
 import net.labymod.core.asm.LabyModCoreMod;
 import net.labymod.main.LabyMod;
 import net.labymod.utils.ServerData;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.resources.Language;
-import net.minecraft.client.resources.LanguageManager;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.fml.client.FMLClientHandler;
 
 import java.text.NumberFormat;
 import java.util.function.Consumer;

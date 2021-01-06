@@ -1,4 +1,4 @@
-package de.marvhuelsmann.labynews.utils;
+package de.labyhelp.addon.staysafe.utils;
 
 import net.minecraft.util.EnumChatFormatting;
 

@@ -1,12 +1,12 @@
-package de.marvhuelsmann.labynews;
+package de.labyhelp.addon.staysafe;
 
-import de.marvhuelsmann.labynews.listener.ClientJoinListener;
-import de.marvhuelsmann.labynews.module.DeathTodayModule;
-import de.marvhuelsmann.labynews.module.NewRecoveredModule;
-import de.marvhuelsmann.labynews.module.TotalConfirmedModule;
-import de.marvhuelsmann.labynews.utils.NewsManager;
-import de.marvhuelsmann.labynews.utils.SettingsManager;
-import de.marvhuelsmann.labynews.utils.Updater;
+import de.labyhelp.addon.staysafe.listener.ClientJoinListener;
+import de.labyhelp.addon.staysafe.module.DeathTodayModule;
+import de.labyhelp.addon.staysafe.module.NewRecoveredModule;
+import de.labyhelp.addon.staysafe.module.TotalConfirmedModule;
+import de.labyhelp.addon.staysafe.utils.NewsManager;
+import de.labyhelp.addon.staysafe.utils.SettingsManager;
+import de.labyhelp.addon.staysafe.utils.Updater;
 import net.labymod.api.LabyModAddon;
 import net.labymod.main.LabyMod;
 import net.labymod.main.Source;

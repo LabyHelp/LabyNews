@@ -1,7 +1,7 @@
-package de.marvhuelsmann.labynews.module;
+package de.labyhelp.addon.staysafe.module;
 
-import de.marvhuelsmann.labynews.StaySafe;
-import de.marvhuelsmann.labynews.enums.CoronaTypes;
+import de.labyhelp.addon.staysafe.StaySafe;
+import de.labyhelp.addon.staysafe.enums.CoronaTypes;
 import net.labymod.ingamegui.ModuleCategory;
 import net.labymod.ingamegui.ModuleCategoryRegistry;
 import net.labymod.ingamegui.moduletypes.SimpleModule;

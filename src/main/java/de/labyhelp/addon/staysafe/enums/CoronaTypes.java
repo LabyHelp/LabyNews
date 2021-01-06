@@ -1,4 +1,4 @@
-package de.marvhuelsmann.labynews.enums;
+package de.labyhelp.addon.staysafe.enums;
 
 public enum CoronaTypes {
 

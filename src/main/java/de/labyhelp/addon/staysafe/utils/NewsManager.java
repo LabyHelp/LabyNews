@@ -1,6 +1,6 @@
-package de.marvhuelsmann.labynews.utils;
+package de.labyhelp.addon.staysafe.utils;
 
-import de.marvhuelsmann.labynews.StaySafe;
+import de.labyhelp.addon.staysafe.StaySafe;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;

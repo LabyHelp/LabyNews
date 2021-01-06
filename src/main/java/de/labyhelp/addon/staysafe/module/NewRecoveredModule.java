@@ -1,25 +1,27 @@
-package de.marvhuelsmann.labynews.module;
+package de.labyhelp.addon.staysafe.module;
 
-import de.marvhuelsmann.labynews.StaySafe;
-import de.marvhuelsmann.labynews.enums.CoronaTypes;
+import de.labyhelp.addon.staysafe.StaySafe;
+import de.labyhelp.addon.staysafe.enums.CoronaTypes;
 import net.labymod.ingamegui.ModuleCategory;
 import net.labymod.ingamegui.ModuleCategoryRegistry;
 import net.labymod.ingamegui.moduletypes.SimpleModule;
 import net.labymod.settings.elements.ControlElement;
 import net.labymod.utils.Material;
-import net.minecraftforge.fml.client.FMLClientHandler;
 
-public class TotalConfirmedModule extends SimpleModule {
+import java.text.NumberFormat;
+
+public class NewRecoveredModule extends SimpleModule {
 
     private String getTotal() {
+        NumberFormat NUMBERFORMAT = NumberFormat.getInstance();
+        NUMBERFORMAT.setGroupingUsed(true);
 
-        return StaySafe.getInstace().getNewsManager().getNews().get(CoronaTypes.TOTALCONFIRMED.getJsonKey());
+        return StaySafe.getInstace().getNewsManager().getNews().get(CoronaTypes.NEWRECOVERED.getJsonKey());
     }
 
     @Override
     public String getDisplayName() {
-            return "Total confirmed";
-
+            return "Recovered today";
     }
 
     @Override
@@ -44,12 +46,12 @@ public class TotalConfirmedModule extends SimpleModule {
 
     @Override
     public String getSettingName() {
-        return "Total confirmed amount";
+        return "Recovered today";
     }
 
     @Override
     public String getDescription() {
-        return "Shows your total confirmed amount";
+        return "Shows the Covid-19 recovered amount";
     }
 
     @Override

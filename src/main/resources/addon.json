@@ -1,7 +1,7 @@
 {
   "uuid": "%uuid%",
   "name": "StaySafe",
-  "mainClass": "de.marvhuelsmann.labynews.StaySafe",
+  "mainClass": "de.labyhelp.addon.staysafe.StaySafe",
   "description": "Always receive the latest Covid-19 information",
   "version": 1.5,
   "author": "LabyHelp Store",
