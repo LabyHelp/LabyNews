@@ -14,10 +14,7 @@ import java.text.NumberFormat;
 public class DeathTodayModule extends SimpleModule {
 
     private String getTotal() {
-        NumberFormat NUMBERFORMAT = NumberFormat.getInstance();
-        NUMBERFORMAT.setGroupingUsed(true);
-
-        return StaySafe.getInstace().getNewsManager().getNews().get(CoronaTypes.NEWDEATHS.getJsonKey());
+        return StaySafe.getInstace().getNewsManager().getTotalConfirmed(CoronaTypes.NEWDEATHS);
     }
 
     @Override

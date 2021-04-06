@@ -9,11 +9,12 @@ import net.labymod.ingamegui.moduletypes.SimpleModule;
 import net.labymod.settings.elements.ControlElement;
 import net.labymod.utils.Material;
 
+import java.text.NumberFormat;
+
 public class TotalConfirmedModule extends SimpleModule {
 
     private String getTotal() {
-
-        return StaySafe.getInstace().getNewsManager().getNews().get(CoronaTypes.TOTALCONFIRMED.getJsonKey());
+        return StaySafe.getInstace().getNewsManager().getTotalConfirmed(CoronaTypes.TOTALCONFIRMED);
     }
 
     @Override

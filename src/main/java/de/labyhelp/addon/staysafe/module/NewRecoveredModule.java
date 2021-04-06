@@ -9,15 +9,13 @@ import net.labymod.ingamegui.moduletypes.SimpleModule;
 import net.labymod.settings.elements.ControlElement;
 import net.labymod.utils.Material;
 
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 
 public class NewRecoveredModule extends SimpleModule {
 
     private String getTotal() {
-        NumberFormat NUMBERFORMAT = NumberFormat.getInstance();
-        NUMBERFORMAT.setGroupingUsed(true);
-
-        return StaySafe.getInstace().getNewsManager().getNews().get(CoronaTypes.NEWRECOVERED.getJsonKey());
+        return StaySafe.getInstace().getNewsManager().getTotalConfirmed(CoronaTypes.NEWRECOVERED);
     }
 
     @Override

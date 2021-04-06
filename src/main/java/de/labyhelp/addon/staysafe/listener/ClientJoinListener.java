@@ -14,9 +14,9 @@ import java.util.function.Consumer;
 
 public class ClientJoinListener implements Consumer<ServerData>, net.labymod.utils.Consumer<ServerData> {
 
+
     @Override
     public void accept(ServerData serverData) {
-
         StaySafe.getInstace().getExecutor().submit(new Runnable() {
             @Override
             public void run() {
@@ -25,33 +25,23 @@ public class ClientJoinListener implements Consumer<ServerData>, net.labymod.uti
                         StaySafe.getInstace().getNewsManager().readCorona();
 
                         if (StaySafe.getInstace().getSettingsManager().getJoinMessage()) {
+                            if (!LabyHelp.getInstance().getSettingsManager().isInitLoading) {
+                                StaySafe.getInstace().sendClientMessage(LabyHelp.getInstance().getTranslationManager().getTranslation("labynews.total") + " " + EnumChatFormatting.WHITE + StaySafe.getInstace().getNewsManager().getTotalConfirmed(CoronaTypes.TOTALCONFIRMED));
+                                StaySafe.getInstace().sendClientMessage(LabyHelp.getInstance().getTranslationManager().getTranslation("labynews.death") + " " + EnumChatFormatting.WHITE + StaySafe.getInstace().getNewsManager().getTotalConfirmed(CoronaTypes.NEWDEATHS));
+                                StaySafe.getInstace().sendClientMessage(LabyHelp.getInstance().getTranslationManager().getTranslation("labynews.recover") + " " + EnumChatFormatting.WHITE + StaySafe.getInstace().getNewsManager().getTotalConfirmed(CoronaTypes.NEWRECOVERED));
 
-                            NumberFormat NUMBERFORMAT = NumberFormat.getInstance();
-                            NUMBERFORMAT.setGroupingUsed(true);
+                                StaySafe.getInstace().sendClientMessage(EnumChatFormatting.WHITE + "Discord:" + EnumChatFormatting.BOLD + " https://labyhelp.de/discord");
 
-                            String newDeaths = StaySafe.getInstace().getNewsManager().getNews().get(CoronaTypes.NEWDEATHS.getJsonKey());
-                            String totalInfected = StaySafe.getInstace().getNewsManager().getNews().get(CoronaTypes.TOTALCONFIRMED.getJsonKey());
-                            String newRecovered = StaySafe.getInstace().getNewsManager().getNews().get(CoronaTypes.NEWRECOVERED.getJsonKey());
-
-                            if (!newDeaths.equals("0") && !LabyHelp.getInstance().getSettingsManager().isInitLoading) {
-                                    StaySafe.getInstace().sendClientMessage(LabyHelp.getInstance().getTranslationManager().getTranslation("labynews.total") + " " + EnumChatFormatting.WHITE + totalInfected);
-                                    StaySafe.getInstace().sendClientMessage(LabyHelp.getInstance().getTranslationManager().getTranslation("labynews.death") + " " + EnumChatFormatting.WHITE + newDeaths);
-                                    StaySafe.getInstace().sendClientMessage(LabyHelp.getInstance().getTranslationManager().getTranslation("labynews.recover") + " " + EnumChatFormatting.WHITE + newRecovered);
-
-                                    StaySafe.getInstace().sendClientMessage(EnumChatFormatting.WHITE + "Discord:" + EnumChatFormatting.BOLD + " https://labyhelp.de/discord");
-
-                                    if (StaySafe.getInstace().getSettingsManager().isNewCommer()) {
-
-
-                                        LabyHelp.getInstance().sendTranslMessage("labynews.adversting");
-                                        StaySafe.getInstace().updateNewCommerConfig();
-                                    }
+                                if (StaySafe.getInstace().getSettingsManager().isNewCommer()) {
+                                    LabyHelp.getInstance().sendTranslMessage("labynews.adversting");
+                                    StaySafe.getInstace().updateNewCommerConfig();
+                                }
                             }
                         }
                     } else {
                         try {
-                            StaySafe.getInstace().getNewsManager().readCorona();
                             String webVersion = StaySafe.getInstace().readVersion();
+                            StaySafe.getInstace().getNewsManager().readCorona();
 
                             StaySafe.getInstace().getSettingsManager().currentVersion = webVersion;
                             if (!webVersion.equalsIgnoreCase(StaySafe.getInstace().getSettingsManager().currentVersion)) {

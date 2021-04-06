@@ -1,12 +1,14 @@
 package de.labyhelp.addon.staysafe.utils;
 
 import de.labyhelp.addon.staysafe.StaySafe;
+import de.labyhelp.addon.staysafe.enums.CoronaTypes;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.nio.charset.StandardCharsets;
+import java.text.NumberFormat;
 import java.util.HashMap;
 
 public class NewsManager {
@@ -33,6 +35,26 @@ public class NewsManager {
         } catch (IOException e) {
             e.printStackTrace();
             throw new IllegalStateException("Could not read corona informations!", e);
+        }
+    }
+
+    public boolean isInteger(String s) {
+        try {
+            Integer.parseInt(s);
+        } catch(NumberFormatException | NullPointerException e) {
+            return false;
+        }
+        return true;
+    }
+
+    public String getTotalConfirmed(CoronaTypes type) {
+        String typeKey = getNews().get(type.getJsonKey());
+
+        if (isInteger(typeKey)) {
+            int intKey = Integer.parseInt(typeKey);
+            return NumberFormat.getInstance().format(intKey);
+        } else {
+            return "";
         }
     }
 
